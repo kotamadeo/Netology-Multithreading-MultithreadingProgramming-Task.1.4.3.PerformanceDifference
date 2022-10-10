@@ -16,7 +16,7 @@ public class Main {
     private static final int ARRAY_SIZE = 3_000_000_0;
     private static final int MAX_VALUE_OF_ELEMENT = 100;
     private static final int THREAD_AMOUNT = Runtime.getRuntime().availableProcessors();
-    private static final int SLEEP_TIME = 5;
+    private static final int SLEEP_TIME = 25;
     private static int[] array = ArrayGenerator.generateArray(ARRAY_SIZE, MAX_VALUE_OF_ELEMENT);
 
 
@@ -32,7 +32,7 @@ public class Main {
         getSpendTime(startTime);
     }
 
-    private static void benchMap(ExecutorService writePool, ExecutorService readPool, Map<Integer, Integer> map) throws InterruptedException {
+    private static void benchMap(ExecutorService writePool, ExecutorService readPool, Map<Integer, Integer> map) {
         int step = array.length / THREAD_AMOUNT;
         for (int i = 0; i < THREAD_AMOUNT; i++) {
             int start = i * step;
@@ -42,8 +42,6 @@ public class Main {
         }
         writePool.shutdown();
         readPool.shutdown();
-        writePool.awaitTermination(2, SECONDS);
-        readPool.awaitTermination(2, SECONDS);
     }
 
     private static void getSpendTime(long start) {

@@ -16,7 +16,7 @@ public class ReadThread implements Runnable {
         int i = 0;
         System.out.printf("Поток %s начал чтение элементов map.%n", currentThread().getName());
         while (i < size) {
-            while (map.get(i) == null) ;
+            while (map.get(i) == null);
             map.get(i);
             i++;
         }
